@@ -32,6 +32,25 @@ And, of course, for many others who like to experience Solid.
 You can install the software locally or on your server
 and get started with Solid immediately.
 
+## Deploying the Server for Lightover
+
+Clone this library:
+```bash
+git clone git@github.com:light-over/CommunitySolidServer.git
+```
+
+Then run the following to setup the environment:
+```bash
+chmod +x /certbot/init-letsencrypt.sh
+docker-compose run --rm certbot /certbot/init-letsencrypt.sh yourdomain.com your-email@domain.com
+```
+
+Finally, run this command to deploy the container
+
+```bash
+docker-compose up -d
+```
+
 ## ⚡ Running the server
 
 To run the server, you will need [Node.js](https://nodejs.org/en/).
