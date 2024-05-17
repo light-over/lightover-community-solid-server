@@ -1,5 +1,5 @@
 # Build stage
-FROM node:lts-alpine AS build
+FROM node:16.13-alpine AS build
 
 # Set current working directory
 WORKDIR /community-server
@@ -13,7 +13,7 @@ RUN npm ci --unsafe-perm && npm run build
 
 
 # Runtime stage
-FROM node:lts-alpine
+FROM node:16.13-alpine
 
 # Add contact informations for questions about the container
 LABEL maintainer="Solid Community Server Docker Image Maintainer <thomas.dupont@ugent.be>"
@@ -41,4 +41,3 @@ ENTRYPOINT [ "node", "bin/server.js" ]
 
 # By default run in filemode (overriden if passing alternative arguments or env vars)
 ENV CSS_CONFIG=config/file.json
-ENV CSS_ROOT_FILE_PATH=/data
