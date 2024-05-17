@@ -6,8 +6,10 @@ services:
     restart: unless-stopped
     container_name: community-solid-server
     environment:
-      CSS_ROOT_FILE_PATH: $DATA_FOLDER
+      CSS_ROOT_FILE_PATH: /data/
       CSS_BASE_URL: "$PROTOCOL://$DOMAIN_NAME/"
+    volumes:
+      - $DATA_FOLDER:/data
   nginx: 
     build: ./nginx
     image: tiotobing/nginx
@@ -15,8 +17,11 @@ services:
     restart: unless-stopped
     ports:
       - 80:80
+      - "443:443"
     environment: 
       SERVER_NAME: $DOMAIN_NAME
+    volumes:
+      - /etc/letsencrypt/:/etc/letsencrypt
   certbot:
     image: certbot/certbot
     volumes:

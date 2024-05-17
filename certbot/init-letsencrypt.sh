@@ -12,6 +12,7 @@ if ! grep -q "127.0.0.1 $DOMAIN_NAME" /etc/hosts; then
     echo "127.0.0.1 $DOMAIN_NAME" | sudo tee -a /etc/hosts > /dev/null
 fi
 
+# Run Certbot
 if [ ! -e "/etc/letsencrypt/live/$DOMAIN_NAME" ]; then
     certbot certonly --webroot --webroot-path=/var/www/certbot --email $EMAIL --agree-tos --no-eff-email --staging --domains $DOMAIN_NAME
 fi
