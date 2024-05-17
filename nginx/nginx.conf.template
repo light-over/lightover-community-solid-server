@@ -33,12 +33,10 @@ http {
   }
 
   server {
-    if ($host = ${SERVER_NAME}) {
-      return 301 https://$host$request_uri;
-    }
-
+    listen 80;
     server_name ${SERVER_NAME};
-      listen 80;
-      return 404;
+
+    # Redirect all HTTP requests to HTTPS
+    return 301 https://$host$request_uri;
   }
 }
