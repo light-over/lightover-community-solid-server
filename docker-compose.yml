@@ -1,17 +1,19 @@
 version: '3'
 services:
   nodejs: 
-    build: ./
+    build: ./docker/solid
     image: tiotobing/nodejs
     restart: unless-stopped
     container_name: community-solid-server
     environment:
       CSS_ROOT_FILE_PATH: /data/
       CSS_BASE_URL: "$PROTOCOL://$DOMAIN_NAME/"
+    args:
+      DOMAIN: $DOMAIN_NAME
     volumes:
       - $DATA_FOLDER:/data
   nginx: 
-    build: ./nginx
+    build: ./docker/nginx
     image: tiotobing/nginx
     container_name: nginx
     restart: unless-stopped
@@ -25,8 +27,8 @@ services:
   certbot:
     image: certbot/certbot
     volumes:
-      - ./certbot/data:/etc/letsencrypt
-      - ./certbot/data/www:/var/www/certbot
+      - ./docker/certbot/data:/etc/letsencrypt
+      - ./docker/certbot/data/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     depends_on:
       - nginx

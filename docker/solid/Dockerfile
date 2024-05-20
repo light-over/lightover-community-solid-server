@@ -10,7 +10,8 @@ COPY . .
 # Install and build the Solid community server (prepare script cannot run in wd)
 RUN npm ci --unsafe-perm && npm run build
 
-
+# Set ETC Hosts
+RUN echo "127.0.0.1 ${DOMAIN}" >> /etc/hosts
 
 # Runtime stage
 FROM node:16.13-alpine
