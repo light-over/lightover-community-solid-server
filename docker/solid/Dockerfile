@@ -29,12 +29,12 @@ RUN mkdir /config /data
 WORKDIR /community-server
 
 # Copy runtime files from build stage
-COPY --from=build /community-server/package.json .
-COPY --from=build /community-server/bin ./bin
-COPY --from=build /community-server/config ./config
-COPY --from=build /community-server/dist ./dist
-COPY --from=build /community-server/node_modules ./node_modules
-COPY --from=build /community-server/templates ./templates
+COPY --from=build ../../community-server/package.json .
+COPY --from=build ../../community-server/bin ./bin
+COPY --from=build ../../community-server/config ./config
+COPY --from=build ../../community-server/dist ./dist
+COPY --from=build ../../community-server/node_modules ./node_modules
+COPY --from=build ../../community-server/templates ./templates
 
 # Informs Docker that the container listens on the specified network port at runtime
 EXPOSE 3000
@@ -43,4 +43,4 @@ EXPOSE 3000
 ENTRYPOINT [ "node", "bin/server.js" ]
 
 # By default run in filemode (overriden if passing alternative arguments or env vars)
-ENV CSS_CONFIG=config/file.json
+ENV CSS_CONFIG=../../config/file.json
