@@ -13,6 +13,8 @@ services:
       CSS_BASE_URL: "$PROTOCOL://$DOMAIN_NAME/"
     volumes:
       - $DATA_FOLDER:/data
+    extra_hosts:
+      - "$DOMAIN_NAME:127.0.0.1"
   nginx: 
     build: ./docker/nginx
     image: tiotobing/nginx
