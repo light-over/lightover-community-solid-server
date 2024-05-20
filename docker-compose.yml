@@ -2,7 +2,7 @@ version: '3'
 services:
   nodejs: 
     build: 
-      context: ./docker/solid
+      context: .
       args:
         DOMAIN: $DOMAIN_NAME
     image: tiotobing/nodejs
