@@ -1,6 +1,8 @@
 # Build stage
 FROM node:16.13-alpine AS build
 
+ARG DOMAIN
+
 # Set current working directory
 WORKDIR /community-server
 

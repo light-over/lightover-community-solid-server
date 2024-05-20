@@ -1,15 +1,16 @@
 version: '3'
 services:
   nodejs: 
-    build: ./docker/solid
+    build: 
+      context: ./docker/solid
+      args:
+        DOMAIN: $DOMAIN_NAME
     image: tiotobing/nodejs
     restart: unless-stopped
     container_name: community-solid-server
     environment:
       CSS_ROOT_FILE_PATH: /data/
       CSS_BASE_URL: "$PROTOCOL://$DOMAIN_NAME/"
-    args:
-      DOMAIN: $DOMAIN_NAME
     volumes:
       - $DATA_FOLDER:/data
   nginx: 
