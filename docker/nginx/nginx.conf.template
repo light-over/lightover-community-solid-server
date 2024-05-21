@@ -3,6 +3,11 @@ events {
 }
 
 http {
+  sendfile on;
+  tcp_nopush on;
+  types_hash_max_size 2048;
+  client_max_body_size 5G;
+
   upstream community-solid-server {
     server nodejs:3000;
   }
