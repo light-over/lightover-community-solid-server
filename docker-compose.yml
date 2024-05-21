@@ -14,7 +14,7 @@ services:
     volumes:
       - $DATA_FOLDER:/data
     extra_hosts:
-      - "$DOMAIN_NAME:127.0.0.1"
+      - "$DOMAIN_NAME:172.17.0.1"
   nginx: 
     build: ./docker/nginx
     image: tiotobing/nginx
