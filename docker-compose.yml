@@ -23,7 +23,7 @@ services:
     ports:
       - 80:80
       - "443:443"
-    environment: 
+    environment:
       SERVER_NAME: $DOMAIN_NAME
     volumes:
       - /etc/letsencrypt/:/etc/letsencrypt
