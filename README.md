@@ -102,6 +102,12 @@ npm ci
 npm start -- # add parameters if needed
 ```
 
+Jackson, this is for you later:
+
+```shell
+npm start -- -c @css:config/file.json -f ../data
+```
+
 ### 📦 Running via Docker
 
 Docker allows you to run the server without having Node.js installed. Images are built on each tagged version and hosted
